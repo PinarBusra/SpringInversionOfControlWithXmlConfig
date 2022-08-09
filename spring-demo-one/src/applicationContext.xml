@@ -7,8 +7,33 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+    
+    
+     
+
+
+
     <!-- Define your beans here -->
+
     <bean id="myCoachVolleyball" class="InversionOfControlWithXmlConfig.VolleyballCoach"></bean>
+   
+   <!-- DependencyInjectionWithConstructorInjection paketi için tanımlamalar -->
+   
+   <!-- define dependency class -->
+   <bean id="myFortune"
+         class="DependencyInjectionWithConstructorInjection.HappyFortuneService"></bean>
+   
+   
+   <bean id="myCoach"
+         class="DependencyInjectionWithConstructorInjection.VolleyballCoach">
+         <!-- set up constructor injection -->
+         <constructor-arg ref="myFortune"></constructor-arg>
+         </bean>
+    <bean id="myCoachForTrack"
+         class="DependencyInjectionWithConstructorInjection.TrackCoach">
+         <!-- set up constructor injection -->
+         <constructor-arg ref="myFortune"></constructor-arg>
+         </bean>
 </beans>
 
 
