@@ -12,7 +12,11 @@
      
 
 
-
+    <!-- InjectingValuesPropertyFile paketi için tanımlamalar -->
+     <context:property-placeholder location="classpath:sport.properties"/>
+    
+    
+    
     <!-- Define your beans here -->
 
     <bean id="myCoachVolleyball" class="InversionOfControlWithXmlConfig.VolleyballCoach"></bean>
@@ -35,16 +39,36 @@
          <constructor-arg ref="myFortune"></constructor-arg>
          </bean>
     <!-- DependencyInjectionWithSetterInjection paketi için tanımlamalar -->
-      <bean id="myFortuneService"
+       <bean id="myFortuneService"
          class="DependencyInjectionWithSetterInjection.HappyFortuneService"></bean>
     
     
     
-       <bean id="myCricketCoach"
+         <bean id="myCricketCoach"
              class="DependencyInjectionWithSetterInjection.CricketCoach">
-             <!-- set up setter injection -->
-             <property name="fortuneService" ref="myFortuneService"></property>
+             <!--   set up setter injection -->
+              <property name="fortuneService" ref="myFortuneService"></property>
+             
              </bean>
+             
+             
+      <!-- InjectingValuesFromPropertyFile paketi için tanımlamalar. -->
+       <bean id="myFortuneServiceForProp"
+         class="InjectingValuesFromPropertyFile.HappyFortuneService"></bean>
+       
+       
+       <bean id="myCricketCoachForProp"
+             class="InjectingValuesFromPropertyFile.CricketCoach">
+             <!-- set up setter injection -->
+             <property name="fortuneService" ref="myFortuneServiceForProp"></property>
+             
+             <!-- set up ınjecting values from prop files -->
+             <property name ="emailAddress" value="${foo.email}"></property>
+             <property name ="team" value="${foo.team}"></property>
+             </bean>
+    
+    
+    
              
 </beans>
 
